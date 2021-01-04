@@ -6,7 +6,7 @@ Move xyzfetch to /usr/bin/
 # Usage
 xyzfetch
 
-# Campatibility
+# Compatibility
 Works on arch and debian
 
 # Depends
