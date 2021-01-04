@@ -1,0 +1,40 @@
+#!/usr/bin/env python3
+import os, distro, platform, psutil
+
+def format_bytes(size):
+    power = 2**10
+    n = 0
+    power_labels = {0 : '', 1: 'K', 2: 'M', 3: 'G', 4: 'T'}
+    while size > power:
+        size /= power
+        n += 1
+    return str(round(size, 1))+''+power_labels[n]
+
+pics={"arch": """         .
+         cc
+        :ooc
+       ,clooc
+      cooooool.
+    .looo:coool.
+   .lool.  .looo.
+  'oooo:    :oolc.
+ ;c;'.        ..;c;
+.                 .."""}
+cyan = '\033[36m'
+thic="\033[1m"
+infos={
+    "OS": distro.name()+" "+distro.version(),
+    "Kernel": os.uname()[0]+" "+os.uname()[2]+" "+platform.machine(),
+    "Shell": os.environ["SHELL"],
+    "DE": os.environ["DESKTOP_SESSION"],
+    "LANG": os.environ["LANG"],
+    "Disk": format_bytes(psutil.disk_usage("/")[1])+" / "+format_bytes(psutil.disk_usage("/")[0])+" ("+str(psutil.disk_usage("/")[3])+"%)",
+    }
+
+for j in [0, 1]:
+    exec("color"+str(j)+"=''")
+    for i in range(30, 38):
+        exec("color"+str(j)+"+='\033[0m\033['+str(j)+';'+str(i)+'m███'")
+
+for infoid, info, row in zip([cyan+thic+os.environ["USER"]+"\033[0m"+"@\033[0m"+os.uname()[1]]+[info+":" for info in infos]+["", color0, color1], [""]+[infos[info] for info in infos]+["", "", ""], pics[distro.id()].split('\n')):
+    print(row+(21-len(row))*" ", cyan+infoid+"\033[0m", info)
