@@ -10,7 +10,8 @@ def format_bytes(size):
         n += 1
     return str(round(size, 1))+''+power_labels[n]
 
-pics={"arch": """         .
+pics={
+"arch": """         .
          cc
         :ooc
        ,clooc
@@ -19,7 +20,18 @@ pics={"arch": """         .
    .lool.  .looo.
   'oooo:    :oolc.
  ;c;'.        ..;c;
-.                 .."""}
+.                 ..""",
+"debian": """      .:odllc'.
+   ,lxxo;,,,,:oxd;.
+ 'xl'.          ;Ox.
+:k.     '....    :O.
+oc     ';        :d.
+cl     .c,.   .';,
+.xl.      .''..
+  cd.
+    ;:,.
+       ,:..   """,
+}
 cyan = '\033[36m'
 thic="\033[1m"
 infos={
@@ -36,5 +48,7 @@ for j in [0, 1]:
     for i in range(30, 38):
         exec("color"+str(j)+"+='\033[0m\033['+str(j)+';'+str(i)+'m███'")
 
+print("")
 for infoid, info, row in zip([cyan+thic+os.environ["USER"]+"\033[0m"+"@\033[0m"+os.uname()[1]]+[info+":" for info in infos]+["", color0, color1], [""]+[infos[info] for info in infos]+["", "", ""], pics[distro.id()].split('\n')):
     print(row+(21-len(row))*" ", cyan+infoid+"\033[0m", info)
+print("")
