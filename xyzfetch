@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-import os, distro, platform, psutil
+#maintainer lxgr <lxgr@protonmail.com>
+#Licensed under the GPL3 and comes without any warranty
+
+import os, sys, distro, platform, psutil
 
 def format_bytes(size):
     power = 2**10
@@ -13,8 +16,27 @@ def format_bytes(size):
 with open("/proc/cpuinfo", "r") as file:
     out=file.read()
 
-color='\033[36m'
-thic="\033[1m"
+dist = distro.id()
+color = '\033[36m'
+thic = "\033[1m"
+
+i=1
+while i < len(sys.argv):
+    if sys.argv[i] == "--color":
+        color = '\033['+sys.argv[i+1]+"m"
+        i+=2
+    elif sys.argv[i] == "--distro":
+        dist = sys.argv[i+1]
+        i+=2
+    elif sys.argv[i] == "--help":
+        print("xyzfetch - A small fetching tool\n\
+Usage: "+sys.argv[0]+" <option> <string>\n\
+      --help            : shows this help dialog\n\
+      --distro <string> : defines distro\n\
+      --color <string>  : defines color")
+        exit()
+    else:
+        i+=1
 
 pics={
 "arch": """         .
@@ -65,6 +87,6 @@ for j in [0, 1]:
         exec("color"+str(j)+"+='\033[0m\033['+str(j)+';'+str(i)+'m███'")
 
 print("")
-for infoid, info, row in zip([color+thic+os.environ["USER"]+"\033[0m"+"@\033[0m"+os.uname()[1]]+[info+":" for info in infos]+["", color0, color1], [""]+[infos[info] for info in infos]+["", "", ""], pics[distro.id()].split('\n')+["", "", ""]):
+for infoid, info, row in zip([color+thic+os.environ["USER"]+"\033[0m"+"@\033[0m"+os.uname()[1]]+[info+":" for info in infos]+["", color0, color1], [""]+[infos[info] for info in infos]+["", "", ""], pics[dist].split('\n')+["", "", ""]):
     print(" "+row+(21-len(row))*" ", color+infoid+"\033[0m", info)
 print("")
