@@ -12,6 +12,10 @@ def format_bytes(size):
 
 with open("/proc/cpuinfo", "r") as file:
     out=file.read()
+
+color='\033[36m'
+thic="\033[1m"
+
 pics={
 "arch": """         .
          cc
@@ -44,6 +48,7 @@ cl     .c,.   .';,
     ;:,.
        ,:..   """,
 }
+
 infos={
 "OS": distro.name()+" "+distro.version(),
 "Kernel": os.uname()[0]+" "+os.uname()[2]+" "+platform.machine(),
@@ -53,8 +58,6 @@ infos={
 "CPU" : out.split("\n")[4].split("\t: ")[1],
 "Disk": format_bytes(psutil.disk_usage("/")[1])+" / "+format_bytes(psutil.disk_usage("/")[0])+" ("+str(psutil.disk_usage("/")[3])+"%)",
 }
-cyan = '\033[36m'
-thic="\033[1m"
 
 for j in [0, 1]:
     exec("color"+str(j)+"=''")
@@ -62,6 +65,6 @@ for j in [0, 1]:
         exec("color"+str(j)+"+='\033[0m\033['+str(j)+';'+str(i)+'m███'")
 
 print("")
-for infoid, info, row in zip([cyan+thic+os.environ["USER"]+"\033[0m"+"@\033[0m"+os.uname()[1]]+[info+":" for info in infos]+["", color0, color1], [""]+[infos[info] for info in infos]+["", "", ""], pics[distro.id()].split('\n')+["", "", ""]):
-    print(" "+row+(21-len(row))*" ", cyan+infoid+"\033[0m", info)
+for infoid, info, row in zip([color+thic+os.environ["USER"]+"\033[0m"+"@\033[0m"+os.uname()[1]]+[info+":" for info in infos]+["", color0, color1], [""]+[infos[info] for info in infos]+["", "", ""], pics[distro.id()].split('\n')+["", "", ""]):
+    print(" "+row+(21-len(row))*" ", color+infoid+"\033[0m", info)
 print("")
