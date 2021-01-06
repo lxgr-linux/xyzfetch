@@ -35,9 +35,9 @@ while i < len(sys.argv):
         print("xyzfetch - A small fetching tool\n\
 Usage: "+sys.argv[0]+" <option> <string>\n\
       --help            : shows this help dialog\n\
-      --distro <string> : defines distro\n\
-      --color <string>  : defines color\
-      --os-color        : uses os color")
+      --distro <string> : defines distro-id\n\
+      --color <string>  : sets base color\n\
+      --os-color        : uses color specified in os-release")
         exit()
     else:
         print("Error '%s' found"%sys.argv[i])
