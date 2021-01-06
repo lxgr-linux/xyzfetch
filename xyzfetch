@@ -28,15 +28,20 @@ while i < len(sys.argv):
     elif sys.argv[i] == "--distro":
         dist = sys.argv[i+1]
         i+=2
+    elif sys.argv[i] == "--os-color":
+        color = '\033['+distro.os_release_info()["ansi_color"]+"m"
+        i+=1
     elif sys.argv[i] == "--help":
         print("xyzfetch - A small fetching tool\n\
 Usage: "+sys.argv[0]+" <option> <string>\n\
       --help            : shows this help dialog\n\
       --distro <string> : defines distro\n\
-      --color <string>  : defines color")
+      --color <string>  : defines color\
+      --os-color        : uses os color")
         exit()
     else:
-        i+=1
+        print("Error", sys.argv[i], "found")
+        exit(1)
 
 pics={
 "arch": """         .
