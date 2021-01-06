@@ -40,7 +40,7 @@ Usage: "+sys.argv[0]+" <option> <string>\n\
       --os-color        : uses os color")
         exit()
     else:
-        print("Error", sys.argv[i], "found")
+        print("Error '%s' found"%sys.argv[i])
         exit(1)
 
 pics={
@@ -91,7 +91,7 @@ infos={
 "OS": distro.name()+" "+distro.version(),
 "Kernel": os.uname()[0]+" "+os.uname()[2]+" "+platform.machine(),
 "Shell": os.environ["SHELL"],
-"DE": os.environ["DESKTOP_SESSION"],
+"DE": os.environ["DESKTOP_SESSION"] if os.environ["XDG_SESSION_TYPE"] == "x11" else "TTY",
 "LANG": os.environ["LANG"],
 "CPU" : out.split("\n")[4].split("\t: ")[1],
 "Disk": format_bytes(psutil.disk_usage("/")[1])+" / "+format_bytes(psutil.disk_usage("/")[0])+" ("+str(psutil.disk_usage("/")[3])+"%)",
