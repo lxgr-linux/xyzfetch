@@ -13,7 +13,7 @@ Usage: /usr/bin/xyzfetch <option> <string><br>
 
 
 # Compatibility
-Works on arch and debian
+Works on arch, raspbian (raspberrypi OS), archlinux arm and debian
 
 # Depends
 Requieres python and its' os, distro, platform, psutil modules
