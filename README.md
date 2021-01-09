@@ -6,10 +6,10 @@ Move xyzfetch to /usr/bin/
 # Usage
 xyzfetch - A small fetching tool <br>
 Usage: /usr/bin/xyzfetch <option> <string><br>
-      <p>--help            : shows this help dialog</p>
-      <p>--distro <string> : defines distro-id</p>
-      <p>--color <string>  : sets base color</p>
-      <p>--os-color        : uses color specified in os-release</p>
+\t--help            : shows this help dialog\s\s
+\t--distro <string> : defines distro-id\s\s
+\t--color <string>  : sets base color\s\s
+\t--os-color        : uses color specified in os-release
 
 
 # Compatibility
